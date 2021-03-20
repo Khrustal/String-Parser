@@ -31,9 +31,7 @@ public class Task {
                 openBrackets++;
             }
             else if (c == ']') {
-                if (digit)
-                    return false;
-                if (waitingForSymbol)
+                if (digit || waitingForSymbol)
                     return false;
                 digit = false;
                 closeBrackets++;
@@ -68,17 +66,17 @@ public class Task {
                 }
                 string = string.substring(1); // remove "[" symbol
                 int brackets = 1;
-                String sub = "";
+                StringBuilder sub = new StringBuilder();
                 while (brackets != 0) { //get line between "[" and "]"
                     if (string.toCharArray()[0] == '[')
                         brackets++;
                     else if (string.toCharArray()[0] == ']')
                         brackets--;
-                    sub += string.toCharArray()[0];
+                    sub.append(string.toCharArray()[0]);
                     string = string.substring(1);
                 }
-                sub = sub.substring(0, sub.length() - 1); // remove last "]"
-                result.append(getString(sub).repeat(Integer.parseInt(digit.toString())));
+                sub = new StringBuilder(sub.substring(0, sub.length() - 1)); // remove last "]"
+                result.append(getString(sub.toString()).repeat(Integer.parseInt(digit.toString())));
             }
         }
 
