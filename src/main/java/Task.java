@@ -14,8 +14,11 @@ public class Task {
     }
 
     static boolean isValid(String string) {
-        boolean digit = false, waitingForSymbol = false;
-        int openBrackets = 0, closeBrackets = 0, numbers = 0;
+        boolean digit = false;
+        boolean waitingForSymbol = false;
+        int openBrackets = 0;
+        int closeBrackets = 0;
+        int numbers = 0;
         for (char c : string.toCharArray()) {
             if (Character.isDigit(c)) {
                 if (!digit)
@@ -76,7 +79,8 @@ public class Task {
                     string = string.substring(1);
                 }
                 sub = new StringBuilder(sub.substring(0, sub.length() - 1)); // remove last "]"
-                result.append(getString(sub.toString()).repeat(Integer.parseInt(digit.toString())));
+                result.append(getString(sub.toString()).
+                        repeat(Integer.parseInt(digit.toString()))); // repeat line digit times
             }
         }
 
